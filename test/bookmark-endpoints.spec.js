@@ -29,14 +29,16 @@ describe('Bookmark Endpoints', () => {
       // });
       return supertest(app)
         .get('/bookmarks')
+        .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
         .expect(200, testBookmarks)
     });
     it(`'getBookmarkById()' resolves an article by ID from 'bookmarks' table`, () => {
       const id = 3;
       const testBookmark = testBookmarks[id-1];
-      return BookmarksService.getBoomarkById(db, id).then(actual => {
-        expect(actual).to.eql(testBookmark);
-      });
+      return supertest(app)
+        .get(`/bookmarks/${id}`)
+        .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+        .expect(200, testBookmark);
     });
     it(`'updateBookmark()' resolves with an updated article by ID from 'bookmarks' table`, () => {
       const id = 3;
@@ -44,33 +46,36 @@ describe('Bookmark Endpoints', () => {
       const newBookmarkFields = {
         title: 'Updated Title'
       };
-      return BookmarksService.updateBookmark(db, id, newBookmarkFields).then(actual => {
-        expect(actual).to.eql({
-          ...originalBookmark,
-          ...newBookmarkFields
-        });
-      });
+      return supertest(app)
+        .patch(`/bookmarks/${id}`)
+        .send(newBookmarkFields)
+        .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+        .expect(200, {...originalBookmark, ...newBookmarkFields});
     });
     it(`'deleteBookmark' resolves with a deleted article by ID from 'bookmarks' table`, () => {
       const id = 1;
       const updatedBookmarks = testBookmarks.filter(bookmark => bookmark.id !== id);
-      return BookmarksService.deleteBookmark(db, id)
-        .then(() => BookmarksService.getAllBookmarks(db))
-        .then((allBookmarks) => {
-          expect(allBookmarks).to.eql(updatedBookmarks)
-        });
+      return supertest(app)
+        .delete(`/bookmarks/${id}`)
+        .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+        .expect(204);
     });
   });
   context('given bookmarks has no data', () => {
     it(`'getAllBookmarks' resolves an empty array from 'bookmarks' table`, () => {
-      return BookmarksService.getAllBookmarks(db)
-        .then((actual) => {expect(actual).to.eql([])});
+      // return BookmarksService.getAllBookmarks(db)
+      //   .then((actual) => {expect(actual).to.eql([])});
+      return supertest(app)
+        .get('/bookmarks')
+        .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+        .expect(200, []);
     });
-    describe.only('POST /articles', () => {
+    describe('POST /articles', () => {
       it(`'insertBookmark' resolves with a new bookmark`, () => {
         const newBookmark = testBookmarks[0];
         return supertest(app)
           .post(`/bookmarks`)
+          .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
           .send(newBookmark)
           .expect(201)
           .expect(res => {
@@ -92,6 +97,7 @@ describe('Bookmark Endpoints', () => {
           console.log(key);
           return supertest(app)
             .post('/bookmarks')
+            .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
             .send(newBookmark)
             .expect(400, {error: { message: `Missing '${key}' in request body`}});
         });
@@ -100,7 +106,59 @@ describe('Bookmark Endpoints', () => {
     it(`'findBookmarkById' resolves with a 404 given an invalid id` , () => {
       return supertest(app)
         .get('/bookmarks/5')
-        .expect(404, 'Bookmark not found.');
+        .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+        .expect(404, {error: { message: `Bookmark with id 5 not found`}});
+    });
+  });
+  context(`Given an XSS attack on bookmark`, () => {
+    const maliciousBookmark = {
+      id: 911,
+      title: 'Bad <script>alert("xss");</script>',
+      url: 'https://www.maliciouswebsiteattackfromhackerman.com<script>alert("xss");</script>',
+      description: 'hi <script>alert("xss");</script>',
+      rating: 5,
+    };
+    it(`removes XSS attack content when POSTing`, () => {
+      return supertest(app)
+        .post(`/bookmarks`)
+        .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+        .send(maliciousBookmark)
+        .expect(201)
+        .expect(res => {
+          expect(res.body.title).to.eql('Bad &lt;script&gt;alert(\"xss\");&lt;/script&gt;');
+          expect(res.body.url).to.eql('https://www.maliciouswebsiteattackfromhackerman.com&lt;script&gt;alert(\"xss\");&lt;/script&gt;');
+          expect(res.body.description).to.eql('hi &lt;script&gt;alert(\"xss\");&lt;/script&gt;');
+        });
+    });
+    describe('general XSS attack tests:', () => {
+      beforeEach('insert malicious bookmark', () => {
+        return db
+          .into('bookmarks')
+          .insert([ maliciousBookmark ]);
+      });
+      it(`removes XSS attack content on 'getBookmarkById()'`, () => {
+        return supertest(app)
+          .get(`/bookmarks/${maliciousBookmark.id}`)
+          .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+          .expect(200)
+          .expect(res => {
+            expect(res.body.title).to.eql('Bad &lt;script&gt;alert(\"xss\");&lt;/script&gt;');
+            expect(res.body.url).to.eql('https://www.maliciouswebsiteattackfromhackerman.com&lt;script&gt;alert(\"xss\");&lt;/script&gt;');
+            expect(res.body.description).to.eql('hi &lt;script&gt;alert(\"xss\");&lt;/script&gt;');
+          });
+      });
+      it(`removes XSS attack content on 'getBookmarks()'`, () => {
+        return supertest(app)
+          .get(`/bookmarks`)
+          .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+          .expect(200)
+          .expect(resp => {
+            const res = resp.body[0];
+            expect(res.title).to.eql('Bad &lt;script&gt;alert(\"xss\");&lt;/script&gt;');
+            expect(res.url).to.eql('https://www.maliciouswebsiteattackfromhackerman.com&lt;script&gt;alert(\"xss\");&lt;/script&gt;');
+            expect(res.description).to.eql('hi &lt;script&gt;alert(\"xss\");&lt;/script&gt;');
+          });
+      });
     });
   });
 });

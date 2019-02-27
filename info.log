@@ -42,3 +42,137 @@
 {"message":"Created bookmark with id 1.","level":"info"}
 {"message":"Created bookmark with id 1.","level":"info"}
 {"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 911 not found.","level":"error"}
+{"message":"Bookmark with id 911 not found.","level":"error"}
+{"message":"Bookmark with id 911 not found.","level":"error"}
+{"message":"Bookmark with id 911 not found.","level":"error"}
+{"message":"Bookmark with id 911 not found.","level":"error"}
+{"message":"Bookmark with id 911 not found.","level":"error"}
+{"message":"Bookmark with id 911 not found.","level":"error"}
+{"message":"Bookmark with id 911 not found.","level":"error"}
+{"message":"Bookmark with id 911 not found.","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Invalid url","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Invalid url","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Invalid url","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Invalid url","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Invalid url","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Invalid url","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Invalid url","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Invalid url","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Invalid url","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/3","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/3","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/1","level":"error"}
+{"message":"Bookmark with id 1 deleted.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/5","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks/911","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/3","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/3","level":"error"}
+{"message":"Bookmark with id 3 updated.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks/1","level":"error"}
+{"message":"Bookmark with id 1 deleted.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/5","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks/911","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/3","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/3","level":"error"}
+{"message":"Bookmark with id 3 updated.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks/1","level":"error"}
+{"message":"Bookmark with id 1 deleted.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks/5","level":"error"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Unauthorized request to path: /bookmarks/911","level":"error"}
+{"message":"Unauthorized request to path: /bookmarks","level":"error"}
