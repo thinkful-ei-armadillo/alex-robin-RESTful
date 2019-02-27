@@ -3,6 +3,7 @@ const uuid = require('uuid/v4');
 const logger = require('../logger');
 const STORE = require('../STORE');
 const bodyParser = express.json();
+const BookmarksService = require('./bookmarks-service');
 
 const bookmarksRouter = express.Router();
 
@@ -17,8 +18,11 @@ function isURL(str) {
 
 bookmarksRouter
   .route('/bookmarks')
-  .get((req, res) => {
-    res.json(STORE)
+  .get((req, res, next) => {
+    const knexInstance = req.app.get('db');
+    BookmarksService.getAllBookmarks(knexInstance)
+    .then(bookmarks => res.json(bookmarks))
+    .catch(next)
   })
   .post(bodyParser, (req, res) => {
     let { title, url, description, rating } = req.body;

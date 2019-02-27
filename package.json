@@ -9,7 +9,8 @@
     "start": "node src/server.js",
     "predeploy": "npm audit",
     "deploy": "git push heroku master",
-    "migrate": "postgrator --config postgrator-config.js"
+    "migrate": "postgrator --config postgrator-config.js",
+    "seed": "psql -U dunder_mifflin_admin -d bookmarks -f ./seeds/seed.bookmarks.sql"
   },
   "keywords": [],
   "author": "",
