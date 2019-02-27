@@ -28,3 +28,17 @@
 {"message":"Bookmark with id 1 updated.","level":"info"}
 {"message":"Bookmark with id 1 updated.","level":"info"}
 {"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"title is required","level":"error"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}
+{"message":"Created bookmark with id 1.","level":"info"}

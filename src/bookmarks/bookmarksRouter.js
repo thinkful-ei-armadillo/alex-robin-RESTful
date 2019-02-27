@@ -27,34 +27,31 @@ bookmarksRouter
   .post(bodyParser, (req, res, next) => {
     const knexInstance = req.app.get('db');
     let { title, url, description, rating } = req.body;
+    let newBookmark = { title, url, rating };
 
-    if (!title) {
-      logger.error('title is required');
-      return res.status(400).send('title is required.');
+    for(const [key, value] of Object.entries(newBookmark)) {
+      if (!value) {
+        return res.status(400).json({
+          error: { message: `Missing '${key}' in request body` }
+        });
+      }
     }
-    if (!url) {
-      logger.error('url is required');
-      return res.status(400).send('url is required.');
-    }
-    if (!rating) {
-      logger.error('Rating is required');
-      return res.status(400).send('Rating is required.');
-    }
+
     if (!isURL(url)) {
       logger.error('Invalid url');
-      return res.status(400).send('Invalid url.');
+      return res.status(400).json({error: { message: `URL in request body is not a valid URL` }});
     }
     
-    description = description || '';
-    rating = parseInt(rating) || 0;
-    const bookmark = { title, url, description, rating };
+    if (description) {
+      newBookmark = {...newBookmark, description};
+    }
 
-    BookmarksService.insertBookmark(knexInstance, bookmark)
+    BookmarksService.insertBookmark(knexInstance, newBookmark)
       .then(bookmark => {
         logger.info(`Created bookmark with id ${bookmark.id}.`);
         res
           .status(201)
-          .location(`http://localhost:8000/bookmarks/${bookmark.id}`)
+          .location(`/bookmarks/${bookmark.id}`)
           .json(bookmark);
       })
       .catch(next);
@@ -70,7 +67,7 @@ bookmarksRouter
       .then(bookmark => {
         if (!bookmark) {
           logger.error(`Bookmark with id ${bookmarkId} not found.`);
-          return res.status(404).send('Bookmark not found.');
+          return res.status(404).json({error: { message: `Bookmark with id ${bookmarkId} not found` }});
         }
         res.json(bookmark);
       })
@@ -84,7 +81,7 @@ bookmarksRouter
       .then(bookmark => {
         if (!bookmark) {
           logger.error(`Bookmark with id ${bookmarkId} not found.`);
-          return res.status(404).send('Bookmark not found.');
+          return res.status(404).json({error: { message: `Bookmark with id ${bookmarkId} not found` }});
         }
         logger.info(`Bookmark with id ${bookmarkId} updated.`);
         res.json(bookmark);
@@ -98,7 +95,7 @@ bookmarksRouter
       .then((bookmark) => {
         if (!bookmark) {
           logger.error(`Bookmark with id ${bookmarkId} not found.`);
-          return res.status(404).send('Bookmark not found.');
+          return res.status(404).json({error: { message: `Bookmark with id ${bookmarkId} not found` }});
         }
         logger.info(`Bookmark with id ${bookmarkId} deleted.`);
         res.status(204).end();

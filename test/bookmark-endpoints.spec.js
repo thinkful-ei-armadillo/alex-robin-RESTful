@@ -66,16 +66,37 @@ describe('Bookmark Endpoints', () => {
       return BookmarksService.getAllBookmarks(db)
         .then((actual) => {expect(actual).to.eql([])});
     });
-    it(`'insertBookmark' resolves with an updated array of bookmarks`, () => {
-      const newBookmark = testBookmarks[0];
-      return BookmarksService.insertBookmark(db, newBookmark)
-        .then(() => {
-          return BookmarksService.getAllBookmarks(db)
-        })
-        .then((allBookmarks) => {
-          expect(allBookmarks).lengthOf(1);
+    describe.only('POST /articles', () => {
+      it(`'insertBookmark' resolves with a new bookmark`, () => {
+        const newBookmark = testBookmarks[0];
+        return supertest(app)
+          .post(`/bookmarks`)
+          .send(newBookmark)
+          .expect(201)
+          .expect(res => {
+            expect(res.body.title).to.eql(newBookmark.title);
+            expect(res.headers.location).to.eql(`/bookmarks/${res.body.id}`);
+          });
+      });
+      const keys = ['title', 'url', 'rating'];
+      keys.forEach(key => {
+        const newBookmark = {
+          title: 'test bookmark',
+          id: 2,
+          url: 'https://bookmark2.com',
+          description: 'This is Bookmark 2',
+          rating: 2 
+        }
+        it(`responds with 400 and an error message when the '${key}' is missing`, () => {
+          delete newBookmark[key];
+          console.log(key);
+          return supertest(app)
+            .post('/bookmarks')
+            .send(newBookmark)
+            .expect(400, {error: { message: `Missing '${key}' in request body`}});
         });
-    });
+      });
+    })
     it(`'findBookmarkById' resolves with a 404 given an invalid id` , () => {
       return supertest(app)
         .get('/bookmarks/5')
