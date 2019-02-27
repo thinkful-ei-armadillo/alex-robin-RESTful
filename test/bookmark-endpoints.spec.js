@@ -2,32 +2,11 @@ const { expect } = require('chai');
 const knex = require('knex');
 const app = require('../src/app');
 const BookmarksService = require('../src/bookmarks/bookmarks-service');
+const { makeBookmarksArray } = require('./bookmarks.fixtures');
 
 describe('Bookmark Endpoints', () => {
   let db;
-  let testBookmarks = [
-    {
-      id: 1,
-      title: 'Bookmark 1',
-      url: 'https://bookmark1.com',
-      description: 'This is Bookmark 1',
-      rating: 1
-    },
-    {
-      id: 2,
-      title: 'Bookmark 2',
-      url: 'https://bookmark2.com',
-      description: 'This is Bookmark 2',
-      rating: 2
-    },
-    {
-      id: 3,
-      title: 'Bookmark 3',
-      url: 'https://bookmark3.com',
-      description: 'This is Bookmark 3',
-      rating: 3
-    }
-  ];
+  let testBookmarks = makeBookmarksArray();
 
   before('establish connection to database',() => {
     db = knex({
@@ -96,6 +75,11 @@ describe('Bookmark Endpoints', () => {
         .then((allBookmarks) => {
           expect(allBookmarks).lengthOf(1);
         });
+    });
+    it(`'findBookmarkById' resolves with a 404 given an invalid id` , () => {
+      return supertest(app)
+        .get('/bookmarks/5')
+        .expect(404, 'Bookmark not found.');
     });
   });
 });

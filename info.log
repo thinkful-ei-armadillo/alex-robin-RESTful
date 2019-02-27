@@ -27,3 +27,4 @@
 {"message":"Bookmark with id 1 updated.","level":"info"}
 {"message":"Bookmark with id 1 updated.","level":"info"}
 {"message":"Bookmark with id 1 updated.","level":"info"}
+{"message":"Bookmark with id 5 not found.","level":"error"}
