@@ -11,3 +11,7 @@
 {"message":"Created bookmark with id de6b5e4b-53ff-41a0-8942-8432786b83e7.","level":"info"}
 {"message":"Created bookmark with id cebb0826-a420-47b6-8138-0e0b86a36263.","level":"info"}
 {"message":"Created bookmark with id cf552cda-87b0-4da4-918b-021d81ea7a84.","level":"info"}
+{"message":"Bookmark with id 4 not found.","level":"error"}
+{"message":"Bookmark with id 4 deleted.","level":"info"}
+{"message":"Bookmark with id 4 deleted.","level":"info"}
+{"message":"Bookmark with id 2 deleted.","level":"info"}
