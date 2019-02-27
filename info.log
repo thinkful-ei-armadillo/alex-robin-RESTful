@@ -15,3 +15,15 @@
 {"message":"Bookmark with id 4 deleted.","level":"info"}
 {"message":"Bookmark with id 4 deleted.","level":"info"}
 {"message":"Bookmark with id 2 deleted.","level":"info"}
+{"message":"Bookmark with id 3 deleted.","level":"info"}
+{"message":"Created bookmark with id 4.","level":"info"}
+{"message":"Created bookmark with id 5.","level":"info"}
+{"message":"Created bookmark with id 6.","level":"info"}
+{"message":"Bookmark with id 7 deleted.","level":"info"}
+{"message":"Bookmark with id 7 not found.","level":"error"}
+{"message":"Bookmark with id 1 updated.","level":"info"}
+{"message":"Bookmark with id 1 updated.","level":"info"}
+{"message":"Bookmark with id 1 updated.","level":"info"}
+{"message":"Bookmark with id 1 updated.","level":"info"}
+{"message":"Bookmark with id 1 updated.","level":"info"}
+{"message":"Bookmark with id 1 updated.","level":"info"}
