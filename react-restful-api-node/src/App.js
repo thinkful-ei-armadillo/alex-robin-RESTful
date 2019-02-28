@@ -14,16 +14,24 @@ class App extends Component {
     error: null,
   };
 
+  parseRating = rating => {
+    return parseInt(rating) || 0;
+  }
+
   setBookmarks = bookmarks => {
+    const parsedRatingBookmarks = bookmarks.map(bookmark => { 
+      return { ...bookmark, rating: this.parseRating(bookmark.rating )}
+    });
     this.setState({
-      bookmarks,
+      bookmarks: parsedRatingBookmarks,
       error: null,
     })
   }
 
   addBookmark = bookmark => {
+    const parsedRatingBookmark = { ...bookmark, rating: this.parseRating(bookmark.rating )}
     this.setState({
-      bookmarks: [ ...this.state.bookmarks, bookmark ],
+      bookmarks: [ ...this.state.bookmarks, parsedRatingBookmark ],
     })
   }
 
@@ -58,9 +66,10 @@ class App extends Component {
   }
 
   updateBookmark = updatedBookmark => {
+    const parsedRatingUpdatedBookmark = { ...updatedBookmark, rating: this.parseRating(updatedBookmark.rating )}
     this.setState({
       bookmarks: this.state.bookmarks.map(bm =>
-        (bm.id !== updatedBookmark.id) ? bm : updatedBookmark
+        (bm.id !== updatedBookmark.id) ? bm : parsedRatingUpdatedBookmark
       )
     })
   }
