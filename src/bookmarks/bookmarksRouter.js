@@ -28,8 +28,20 @@ function isURL(str) {
   }
 }
 
+function isEmpty(obj) {
+  let bool = Object.keys(obj).length === 0 && obj.constructor === Object;
+  if (!bool) {
+    for (let key in obj) {
+      if (obj[key] != null && obj[key] != '')
+        return false;
+    }
+    bool = true;
+  }
+  return bool;
+}
+
 bookmarksRouter
-  .route('/bookmarks')
+  .route('/api/bookmarks')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db');
     BookmarksService.getAllBookmarks(knexInstance)
@@ -50,16 +62,13 @@ bookmarksRouter
         });
       }
     }
-
     if (!isURL(url)) {
       logger.error('Invalid url');
       return res.status(400).json({error: { message: `URL in request body is not a valid URL` }});
     }
-    
     if (description) {
       newBookmark = {...newBookmark, description};
     }
-
     BookmarksService.insertBookmark(knexInstance, newBookmark)
       .then(bookmark => {
         logger.info(`Created bookmark with id ${bookmark.id}.`);
@@ -72,7 +81,7 @@ bookmarksRouter
   });
 
 bookmarksRouter
-  .route('/bookmarks/:bookmarkId')
+  .route('/api/bookmarks/:bookmarkId')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db');
     const { bookmarkId } = req.params;
@@ -91,6 +100,9 @@ bookmarksRouter
     const knexInstance = req.app.get('db');
     const newBookmarkFields = req.body;
     const { bookmarkId } = req.params;
+    if (isEmpty(newBookmarkFields)) {
+      return res.status(400).json({error: { message: `No updated fields were found to update from` }});
+    }
     BookmarksService.updateBookmark(knexInstance, bookmarkId, newBookmarkFields)
       .then(bookmark => {
         if (!bookmark) {
