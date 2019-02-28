@@ -9,6 +9,15 @@ describe('Bookmark Endpoints', () => {
   let testBookmarks = makeBookmarksArray();
 
   before('establish connection to database',() => {
+    // db = knex({
+    //   client: 'pg',
+    //   connection: {
+    //     host: '127.0.0.1',
+    //     user: 'dunder_mifflin',
+    //     password: process.env.MIGRATION_DB_PASS,
+    //     database: 'bookmark_test'
+    //   }
+    // });
     db = knex({
       client: 'pg',
       connection: process.env.DB_URL_TEST

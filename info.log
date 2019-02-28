@@ -288,3 +288,8 @@
 {"message":"Unauthorized request to path: /api/bookmarks/3","level":"error"}
 {"message":"Bookmark with id 3 updated.","level":"info"}
 {"message":"Unauthorized request to path: /api/bookmarks/3","level":"error"}
+{"message":"Unauthorized request to path: /api/bookmarks/3","level":"error"}
+{"message":"Bookmark with id 3 updated.","level":"info"}
+{"message":"Unauthorized request to path: /api/bookmarks/3","level":"error"}
+{"message":"Unauthorized request to path: /api/bookmarks","level":"error"}
+{"message":"Unauthorized request to path: /favicon.ico","level":"error"}
